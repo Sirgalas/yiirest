@@ -12,7 +12,7 @@ class LoginFormServices
 
     private $users;
 
-    public function __construct(UserRepository $users)
+    public function __construct(User $users)
     {
         $this->users = $users;
     }
