@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: root
- * Date: 25.01.18
- * Time: 22:56
- */
+
 
 namespace app\services;
 
@@ -24,12 +19,12 @@ class PasswordResetService
         $this->mailer = $mailer;
     }
 
-    public function request()
+    public function request($form)
     {
         /* @var $user User */
         $user = User::findOne([
             'status' => User::STATUS_ACTIVE,
-            'email' => $this->email,
+            'email' => $form->email,
         ]);
 
         if (!$user) {

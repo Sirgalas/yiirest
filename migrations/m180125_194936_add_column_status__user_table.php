@@ -12,7 +12,7 @@ class m180125_194936_add_column_status__user_table extends Migration
      */
     public function safeUp()
     {
-        $this->addColumn('%user','status',$this->integer());
+        $this->addColumn('user','status',$this->integer());
     }
 
     /**
@@ -20,7 +20,7 @@ class m180125_194936_add_column_status__user_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('%user','status');
+        $this->dropTable('user','status');
     }
 
 }

@@ -10,18 +10,24 @@ use yii\filters\VerbFilter;
 use app\forms\SignupForm;
 use app\forms\LoginForm;
 use app\models\ContactForm;
-use app\services\SignupFormServices;
+use app\services\SignupFormService;
 use app\services\LoginFormServices;
 use app\forms\PasswordResetRequestForm;
+use app\forms\ResetPasswordForm;
+use app\services\PasswordResetService;
 class SiteController extends Controller
 {
 
     private $service;
 
-    public function __construct($id, $module, LoginFormServices $service, $config = [])
+
+    private $passwordResetService;
+
+    public function __construct($id, $module,PasswordResetService $passwordResetService, LoginFormServices $service, $config = [])
     {
         parent::__construct($id, $module, $config);
         $this->service = $service;
+        $this->passwordResetService=$passwordResetService;
     }
     /**
      * @inheritdoc
@@ -138,7 +144,7 @@ class SiteController extends Controller
         $form = new SignupForm();
         if ($form->load(Yii::$app->request->post())&&$form->validate()) {
             try{
-                $user= (new SignapService())->signup($form);
+                $user= (new SignupFormService())->signup($form);
                 if (Yii::$app->getUser()->login($user)) {
                     return $this->goHome();
                 }

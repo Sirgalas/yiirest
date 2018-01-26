@@ -9,15 +9,16 @@
 namespace app\services;
 
 use app\entities\User;
+use app\forms\SignupForm;
 
-class SignupFormServices
+class SignupFormService
 {
     public function signup(SignupForm $form): User
     {
-        if(User::find()->andWhere(['username'=>$form->username])){
+        if(User::find()->andWhere(['username'=>$form->username])->one()){
             throw new \DomainException('Username is already exist');
         }
-        if(User::find()->andWhere(['email'=>$form->username])){
+        if(User::find()->andWhere(['email'=>$form->username])->one()){
             throw new \DomainException('Email is already exist');
         }
 

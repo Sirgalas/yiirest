@@ -8,7 +8,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => [
         'log',
-        'bootstrap\SetUp'
+        'app\bootstrap\Setup'
     ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -23,7 +23,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\entities\User',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [

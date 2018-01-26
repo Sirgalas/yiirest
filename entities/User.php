@@ -120,13 +120,17 @@ class User extends ActiveRecord implements IdentityInterface
         ]);
     }
 
-    public function requestPasswordReset(): void
+
+
+    public function requestPasswordReset()
     {
         if (!empty($this->password_reset_token) && self::isPasswordResetTokenValid($this->password_reset_token)) {
             throw new \DomainException('Password resetting is already requested.');
         }
         $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
     }
+
+
 
 
     public function resetPassword($password): void
@@ -137,6 +141,7 @@ class User extends ActiveRecord implements IdentityInterface
         $this->setPassword($password);
         $this->password_reset_token = null;
     }
+
 
 
     /**
