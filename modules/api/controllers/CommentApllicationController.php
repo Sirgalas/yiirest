@@ -26,12 +26,13 @@ class CommentApllicationController extends ActiveController
      * Добавления нового сайта
      * @return type
      */
-    public function actionCreate()
+    public function actionAdd()
     {
+
 
     }
 
-    public function actionView(){
+    public function actionSearch(){
 
     }
 }

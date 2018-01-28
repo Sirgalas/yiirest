@@ -1,15 +1,11 @@
 <?php
 
-$params = array_merge(
-    require(__DIR__ . '/../config/params.php'),
-    require(__DIR__ . '/params.php')
-);
+
 return [
     'id' => 'api',
-    'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
     'components' => [
         'response' => [
+            'class'=> '\yii\web\Response',
             'formatters' => [
                 \yii\web\Response::FORMAT_JSON => [
                     'class' => 'yii\web\JsonResponseFormatter',
@@ -19,15 +15,13 @@ return [
             ],
         ],
         'request' => [
+            'class'=>'yii\web\Request',
             'parsers' => [
                 'application/json' => 'yii\web\JsonParser',
             ]
         ],
-       'user' => [
-            'identityClass' => 'api\entities\User',
-            'enableAutoLogin' => false,
-        ],
         'urlManager' => [
+            'class'=>'yii\web\UrlManager',
             'enablePrettyUrl' => true,
             'enableStrictParsing' => true,
             'showScriptName' => false,
@@ -50,8 +44,8 @@ return [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => '/application',
                     'extraPatterns' => [
-                        'GET create' => 'create',
-                        'OPTIONS create' => 'create',
+                        'GET add' => 'add',
+                        'OPTIONS add' => 'add',
                         'GET search' => 'search',
                         'OPTIONS search' => 'search',
                     ]
@@ -77,6 +71,5 @@ return [
             ],
         ]
     ],
-    'params' => $params,
 ];
 

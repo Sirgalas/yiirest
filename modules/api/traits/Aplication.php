@@ -6,9 +6,9 @@ namespace app\modules\api\traits;
 use Yii;
 trait Aplication{
 
-    /*public function behaviors()
+    public function behaviors()
     {
-        $behaviors = parent::behaviors();
+       /* $behaviors = parent::behaviors();
 
         Чтобы пользоваться нашим API посредством ajax-запросов с других доменов
         $behaviors['corsFilter'] = [
@@ -17,7 +17,7 @@ trait Aplication{
 
         $behaviors['authenticator'] = [
             'class' => HttpShopAuth::className()
-        ];
+        ];*/
         //Используем только JSON формат
         $behaviors['contentNegotiator'] = [
             'class' => \yii\filters\ContentNegotiator::className(),
@@ -25,10 +25,9 @@ trait Aplication{
                 'application/json' => \yii\web\Response::FORMAT_JSON,
             ],
         ];
-
         return $behaviors;
     }
-*/
+
     /**
      * 
      * @return array
@@ -37,8 +36,8 @@ trait Aplication{
     {
         $actions = parent::actions();
         unset($actions['index']);
-        //unset($actions['view']);
-        //unset($actions['create']);
+        unset($actions['view']);
+        unset($actions['create']);
         unset($actions['update']);
         unset($actions['delete']);
         //unset($actions['options']);
