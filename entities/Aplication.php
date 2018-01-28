@@ -25,7 +25,14 @@ class Aplication extends \yii\db\ActiveRecord
         return 'aplication';
     }
 
+    const SCENARIO_SEARCH = 'Search';
 
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios[self::SCENARIO_SEARCH] = [];
+        return $scenarios;
+    }
 
     /**
      * @inheritdoc
@@ -63,7 +70,7 @@ class Aplication extends \yii\db\ActiveRecord
     }
 
     public function getUser(){
-        return $this->hasOne(User::className(),['id'=>'user_id']);
+        return $this->hasOne(User::className(),['id'=>'user_aplication']);
     }
 
     public function getComment(){

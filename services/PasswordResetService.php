@@ -31,7 +31,7 @@ class PasswordResetService
             throw new \DomainException('User not found');
         }
 
-        $user->requestPasswordRequest();
+        $user->requestPasswordReset();
 
         if (!$user->save()) {
             throw new \RuntimeException('Saving Error');
@@ -41,12 +41,14 @@ class PasswordResetService
         $sent = $this
             ->mailer
             ->compose(
-                ['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'],
+                [
+                    'html' => 'reset/passwordResetToken-html',
+                    'text' => 'reset/passwordResetToken-text'
+                ],
                 ['user' => $user]
             )
-            /*Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'*/
             ->setFrom($this->suportEmail)
-            ->setTo($this->email)
+            ->setTo($user->email)
             ->setSubject('Password reset for ' . Yii::$app->name)
             ->send();
 

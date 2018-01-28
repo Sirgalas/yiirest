@@ -46,14 +46,12 @@ $config = [
             ],
         ],
         'db' => $db,
-
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
+        'urlManager' => require __DIR__ . '/UrlManager.php',
+    ],
+    'modules' => [
+        'api' => [
+            'class' => 'app\modules\api\Module',
         ],
-
     ],
     'params' => $params,
 ];
