@@ -5,20 +5,18 @@ namespace app\modules\api\controllers;
 
 use Yii;
 use yii\rest\ActiveController;
-use app\modules\api\models\User;
 use app\modules\api\services\SignupRestServices;
 use app\modules\api\services\PasswordResetRestService;
-use yii\console\Exception;
-use yii\web\BadRequestHttpException;
+
 
 class UserController extends ActiveController
 {
-    //use \app\modules\api\traits\Aplication;
+    use \app\modules\api\traits\Aplication;
 
     private $service;
     private $passwordResetService;
 
-    public $modelClass = 'api\models\User';
+    public $modelClass = 'api\entities\User';
 
     public function __construct($id, $module, SignupRestServices $service,PasswordResetRestService $passwordResetService, $config = [])
     {
@@ -30,19 +28,11 @@ class UserController extends ActiveController
 
     public function actionRegistration(){
         $params = Yii::$app->request->get();
-        $this->service->signup($params);
+        $user=$this->service->signup($params);
+        $this->setHeader(200);
+        return ['token' => $user->access_token];
     }
 
-    public function actionLogin(){
 
-    }
-
-    public function actionRequestPasswordReset(){
-
-    }
-
-    public function actionResetPassword(){
-
-    }
 
 }

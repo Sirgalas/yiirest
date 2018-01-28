@@ -17,6 +17,7 @@ class ApllicationController extends ActiveController
     use \app\modules\api\traits\Aplication;
 
     public function actionСreate(){
+
     }
     public function actionSearch(){
     }

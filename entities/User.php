@@ -20,6 +20,7 @@ use yii\web\IdentityInterface;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
+ * @property string $access_token
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -46,6 +47,7 @@ class User extends ActiveRecord implements IdentityInterface
         $user->created_at=time();
         $user->status=self::STATUS_ACTIVE;
         $user->generateAuthKey();
+        $user->access_token=$user->generateAccessToken();
         return $user;
     }
 
@@ -120,6 +122,9 @@ class User extends ActiveRecord implements IdentityInterface
         ]);
     }
 
+    public function generateAccessToken(){
+        return Yii::$app->security->generateRandomString(4);
+    }
 
 
     public function requestPasswordReset()

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\api\models;
+namespace app\modules\api\entities;
 
 use Yii;
 
@@ -12,7 +12,7 @@ class User extends \app\entities\User
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        return static::findOne(['access_token' => $token, 'role' => self::ROLE_SHOP]);
+        return static::findOne(['access_token' => $token]);
     }
 
 }

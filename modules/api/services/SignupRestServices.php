@@ -8,23 +8,24 @@
 
 namespace app\modules\api\services;
 
-use app\modules\api\models\User;
+use app\modules\api\entities\User;
 
 class SignupRestServices
 {
     public function signup( $get): User
     {
-        if(User::find()->andWhere(['username'=>$get->username])->one()){
+
+        if(User::find()->andWhere(['username'=>$get['username']])->one()){
             throw new \DomainException('Username is already exist');
         }
-        if(User::find()->andWhere(['email'=>$get->username])->one()){
+        if(User::find()->andWhere(['email'=>$get['username']])->one()){
             throw new \DomainException('Email is already exist');
         }
 
         $user = User::signup(
-            $get->username,
-            $get->email,
-            $get->password
+            $get['username'],
+            $get['email'],
+            $get['password']
         );
 
         if (!$user->save()) {
