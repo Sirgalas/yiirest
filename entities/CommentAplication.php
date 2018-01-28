@@ -30,6 +30,7 @@ class CommentAplication extends \yii\db\ActiveRecord
         return [
             [
                 'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'create_at',
                 'value' => new Expression('NOW()'),
             ],
         ];
