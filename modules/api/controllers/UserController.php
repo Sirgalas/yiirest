@@ -21,7 +21,7 @@ class UserController extends ActiveController
         $params = Yii::$app->request->get();
         $user=$service->signup($params);
         $this->setHeader(200);
-        return ['token' => $user->access_token];
+        return ['token' => $user->access_token,'id'=>$user->id];
     }
 
 
