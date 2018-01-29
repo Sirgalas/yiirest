@@ -22,10 +22,11 @@ class m180125_181235_table_user extends Migration
             'unconfirmed_email'=>$this->string(255),
             'blocked_at'=>$this->integer(),
             'registration_ip'=>$this->string(45),
-            'created_at'=>$this->integer(),
-            'updated_at'=>$this->integer(),
+            'created_at'=>$this->timestamp(),
+            'updated_at'=>$this->timestamp()->defaultExpression('CURRENT_TIMESTAMP'),
             'flags'=>$this->integer(),
-            'last_login_at'=>$this->integer()
+            'last_login_at'=>$this->integer(),
+            'access_token'=>$this->string(6)
         ]);
     }
 
@@ -34,7 +35,7 @@ class m180125_181235_table_user extends Migration
      */
     public function safeDown()
     {
-       $this->dropTable('uesr');
+        $this->dropTable('uesr');
     }
 
 }
