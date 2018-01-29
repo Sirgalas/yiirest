@@ -30,6 +30,8 @@ class ApllicationController extends ActiveController
 
     public function actionAdd(){
         $params=Yii::$app->request->get();
+        if(!isset($params['token']))
+            throw new BadRequestHttpException('get params token must be blank');
         $user=$this->serviceLogin->auth($params['token']);
         Yii::$app->user->login($user);
         $application= new Aplication([

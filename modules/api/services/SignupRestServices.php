@@ -29,7 +29,7 @@ class SignupRestServices
         );
 
         if (!$user->save()) {
-            throw new \RuntimeException('Saving Error');
+            throw new \RuntimeException('Error data' . json_encode($user->errors));
         }
 
         return $user;
