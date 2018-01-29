@@ -21,11 +21,11 @@ class ApllicationController extends ActiveController
     private $serviceLogin;
     private $serviceSearch;
 
-    public function __construct($id, $module, LoginRestService $serviceLogin, SearchRestService $serviceSearch, $config = [])
+    public function __construct($id, $module,  $config = [])
     {
         parent::__construct($id, $module, $config);
-        $this->serviceLogin = $serviceLogin;
-        $this->serviceSearch = $serviceSearch;
+        $this->serviceLogin = new LoginRestService();
+        $this->serviceSearch = new SearchRestService();
     }
 
     public function actionAdd(){

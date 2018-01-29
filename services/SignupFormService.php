@@ -13,7 +13,7 @@ use app\forms\SignupForm;
 
 class SignupFormService
 {
-    public function signup(SignupForm $form): User
+    public function signup($form)
     {
         if(User::find()->andWhere(['username'=>$form->username])->one()){
             throw new \DomainException('Username is already exist');

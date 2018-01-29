@@ -28,10 +28,10 @@ class CommentApllicationController extends ActiveController
 
     private $serviceLogin;
 
-    public function __construct($id, $module, LoginRestService $serviceLogin, $config = [])
+    public function __construct($id, $module, $config = [])
     {
         parent::__construct($id, $module, $config);
-        $this->serviceLogin = $serviceLogin;
+        $this->serviceLogin = new LoginRestService();
     }
     /**
      * Добавления нового сайта
@@ -66,7 +66,8 @@ class CommentApllicationController extends ActiveController
 
     public function actionSearch(){
         $params=Yii::$app->request->get();
-        if(isset($params['id']))
+
+        if(!isset($params['id']))
             throw new BadRequestHttpException('get params id must be blank');
         $aplication= Aplication::findOne($params['id']);
         if(!$aplication)

@@ -12,12 +12,12 @@ class LoginFormServices
 
     private $users;
 
-    public function __construct(User $users)
+    public function __construct()
     {
-        $this->users = $users;
+        $this->users = new User();
     }
 
-    public function auth(LoginForm $form): User
+    public function auth($form)
     {
         $user = $this->users->findByUsernameOrEmail($form->username);
         if (!$user || !$user->isActive() || !$user->validatePassword($form->password)) {

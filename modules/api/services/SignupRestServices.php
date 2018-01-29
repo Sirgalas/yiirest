@@ -12,7 +12,7 @@ use app\modules\api\entities\User;
 
 class SignupRestServices
 {
-    public function signup( $get): User
+    public function signup( $get)
     {
 
         if(User::find()->andWhere(['username'=>$get['username']])->one()){

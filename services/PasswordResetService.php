@@ -11,12 +11,11 @@ use yii\mail\MailerInterface;
 class PasswordResetService
 {
     private $suportEmail;
-    private $mailer;
 
-    public function __construct($suportEmail, MailerInterface $mailer)
+    public function __construct($suportEmail)
     {
         $this->suportEmail = $suportEmail;
-        $this->mailer = $mailer;
+
     }
 
     public function request($form)
@@ -38,8 +37,7 @@ class PasswordResetService
         }
 
 
-        $sent = $this
-            ->mailer
+        $sent = Yii::$app->mail
             ->compose(
                 [
                     'html' => 'reset/passwordResetToken-html',

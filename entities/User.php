@@ -38,7 +38,7 @@ class User extends ActiveRecord implements IdentityInterface
         return '{{%user}}';
     }
 
-    public static function signup(string  $username, string $email ,string $password ): self
+    public static function signup(  $username, $email , $password )
     {
         $user = new static();
         $user->username = $username;
@@ -51,7 +51,7 @@ class User extends ActiveRecord implements IdentityInterface
         return $user;
     }
 
-    public function isActive():bool
+    public function isActive()
     {
         return $this->status===self::STATUS_ACTIVE;
     }
@@ -138,7 +138,7 @@ class User extends ActiveRecord implements IdentityInterface
 
 
 
-    public function resetPassword($password): void
+    public function resetPassword($password)
     {
         if (empty($this->password_reset_token)) {
             throw new \DomainException('Password resetting is not requested.');
