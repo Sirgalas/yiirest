@@ -240,5 +240,9 @@ class User extends ActiveRecord implements IdentityInterface
         return $this::find()->andWhere(['or', ['username' => $value], ['email' => $value]])->one();
     }
 
+    public function getPromo(){
+        return $this->hasOne(Promo::className(), ['id' => 'promo_id'])->viaTable('{{%user_promo}}', ['user_id' => 'id']);
+
+    }
 
 }

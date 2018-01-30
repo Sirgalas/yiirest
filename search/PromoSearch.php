@@ -5,12 +5,12 @@ namespace app\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\entities\Aplication;
+use app\entities\Promo;
 
 /**
- * AplicationSearch represents the model behind the search form of `app\entities\Aplication`.
+ * PromoSearch represents the model behind the search form of `app\entities\Promo`.
  */
-class AplicationSearch extends Aplication
+class PromoSearch extends Promo
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class AplicationSearch extends Aplication
     public function rules()
     {
         return [
-            [['id', 'create_at', 'user_aplication', 'user_request'], 'integer'],
-            [['title', 'content'], 'safe'],
+            [['id', 'date_start', 'date_finish', 'sity_id'], 'integer'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class AplicationSearch extends Aplication
      */
     public function search($params)
     {
-        $query = Aplication::find();
+        $query = Promo::find();
 
         // add conditions that should always apply here
 
@@ -60,13 +60,12 @@ class AplicationSearch extends Aplication
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'create_at' => $this->create_at,
-            'user_aplication' => $this->user_aplication,
-            'user_request' => $this->user_request,
+            'date_start' => $this->date_start,
+            'date_finish' => $this->date_finish,
+            'sity_id' => $this->sity_id,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'content', $this->content]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

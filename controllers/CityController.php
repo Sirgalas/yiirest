@@ -2,20 +2,17 @@
 
 namespace app\controllers;
 
-use app\entities\User;
-use SebastianBergmann\GlobalState\RuntimeException;
 use Yii;
-use app\entities\Aplication;
-use app\search\AplicationSearch;
-use yii\helpers\ArrayHelper;
+use app\entities\City;
+use app\search\CitySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AplicationController implements the CRUD actions for Aplication model.
+ * CityController implements the CRUD actions for City model.
  */
-class ApllicationController extends Controller
+class CityController extends Controller
 {
     /**
      * @inheritdoc
@@ -33,12 +30,12 @@ class ApllicationController extends Controller
     }
 
     /**
-     * Lists all Aplication models.
+     * Lists all City models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new AplicationSearch();
+        $searchModel = new CitySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -48,7 +45,7 @@ class ApllicationController extends Controller
     }
 
     /**
-     * Displays a single Aplication model.
+     * Displays a single City model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -61,25 +58,15 @@ class ApllicationController extends Controller
     }
 
     /**
-     * Creates a new Aplication model.
+     * Creates a new City model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Aplication();
+        $model = new City();
 
-        if (Yii::$app->user->isGuest) {
-            $this->redirect(['site/signup']);
-        }
-        if ($model->load(Yii::$app->request->post()) ) {
-            try{
-                if(!$model->save())
-                    throw new RuntimeException($model->errors());
-            }catch(RuntimeException $ex){
-                Yii::$app->errorHandler->logException($ex);
-                Yii::$app->session->setFlash('error',$ex->getMessage());
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -89,7 +76,7 @@ class ApllicationController extends Controller
     }
 
     /**
-     * Updates an existing Aplication model.
+     * Updates an existing City model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -109,7 +96,7 @@ class ApllicationController extends Controller
     }
 
     /**
-     * Deletes an existing Aplication model.
+     * Deletes an existing City model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -122,32 +109,19 @@ class ApllicationController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionSearch(){
-        $users=ArrayHelper::map(User::find()->asArray()->all(),'id','username');
-        $aplication=ArrayHelper::map(Aplication::find()->where(['user_aplication'=>Yii::$app->user->identity->id])->asArray()->all(),'id','title');
-        $model=new Aplication(['scenario' => Aplication::SCENARIO_SEARCH]);
-         return $this->render('search',[
-            'user'=>$users,
-            'model'=>$model,
-            'aplication'=>$aplication
-        ]);
-    }
-
     /**
-     * Finds the Aplication model based on its primary key value.
+     * Finds the City model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Aplication the loaded model
+     * @return City the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Aplication::findOne($id)) !== null) {
+        if (($model = City::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-
-
 }

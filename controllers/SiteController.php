@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
+use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
@@ -169,7 +170,7 @@ class SiteController extends Controller
         try {
             $this->passwordResetService->validateToken($token);
         } catch (\DomainException $e) {
-            throw new BadRequestHttpException($e->getMessage());
+            throw new \DomainException($e->getMessage());
         }
         $form = new ResetPasswordForm();
         if ($form->load(Yii::$app->request->post()) && $form->validate() && $form->resetPassword()) {

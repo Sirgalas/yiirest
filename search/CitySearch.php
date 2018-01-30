@@ -5,12 +5,12 @@ namespace app\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\entities\CommentAplication;
+use app\entities\City;
 
 /**
- * CommentAplicationSearch represents the model behind the search form of `app\entities\CommentAplication`.
+ * CitySearch represents the model behind the search form of `app\entities\City`.
  */
-class CommentAplicationSearch extends CommentAplication
+class CitySearch extends City
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class CommentAplicationSearch extends CommentAplication
     public function rules()
     {
         return [
-            [['id', 'user_id', 'id_aplication'], 'integer'],
-            [['title', 'comment', 'create_at'], 'safe'],
+            [['id'], 'integer'],
+            [['name', 'created_at'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class CommentAplicationSearch extends CommentAplication
      */
     public function search($params)
     {
-        $query = CommentAplication::find();
+        $query = City::find();
 
         // add conditions that should always apply here
 
@@ -60,13 +60,10 @@ class CommentAplicationSearch extends CommentAplication
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'user_id' => $this->user_id,
-            'id_aplication' => $this->id_aplication,
-            'create_at' => $this->create_at,
+            'created_at' => $this->created_at,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'comment', $this->comment]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }
