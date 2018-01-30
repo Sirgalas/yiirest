@@ -21,6 +21,21 @@ class City extends \yii\db\ActiveRecord
         return 'city';
     }
 
+    public static function CityCreate(string  $name): self
+    {
+        $city = new static();
+        $city->name = $name;
+        $city->created_at='now()';
+        return $city;
+    }
+
+    public static function CityUpdate(string  $name): self
+    {
+        $city = new static();
+        $city->name = $name;
+        return $city;
+    }
+
     /**
      * @inheritdoc
      */

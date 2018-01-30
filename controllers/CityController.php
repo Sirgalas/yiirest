@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\forms\CityForm;
+use app\services\CityFormService;
 use Yii;
 use app\entities\City;
 use app\search\CitySearch;
@@ -14,6 +16,14 @@ use yii\filters\VerbFilter;
  */
 class CityController extends Controller
 {
+    private $service;
+    public function __construct($id, $module, CityFormService $service, $config = [])
+    {
+        parent::__construct($id, $module, $config);
+        $this->service = $service;
+    }
+
+
     /**
      * @inheritdoc
      */
@@ -37,7 +47,6 @@ class CityController extends Controller
     {
         $searchModel = new CitySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -64,14 +73,17 @@ class CityController extends Controller
      */
     public function actionCreate()
     {
-        $model = new City();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $form = new CityForm();
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            try{
+                $city= $this->service->create($form);
+                return $this->redirect(['view', 'id' => $city->id]);
+            }catch (\DomainException $ex){
+                Yii::$app->session->setFlash('error', $ex->getMessage());
+            }
         }
-
         return $this->render('create', [
-            'model' => $model,
+            'model' => $form,
         ]);
     }
 
@@ -84,14 +96,17 @@ class CityController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+       $form=new CityForm();
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            try{
+                $city= $this->service->update($form);
+                return $this->redirect(['view', 'id' => $city->id]);
+            }catch (\DomainException $ex){
+                Yii::$app->session->setFlash('error', $ex->getMessage());
+            }
         }
-
         return $this->render('update', [
-            'model' => $model,
+            'model' => $form,
         ]);
     }
 
