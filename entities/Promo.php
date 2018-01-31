@@ -13,7 +13,7 @@ use Yii;
  * @property int $date_finish
  * @property int $sity_id
  * @property int $user_id
- * @property int $staus
+ * @property int $status
  */
 class Promo extends \yii\db\ActiveRecord
 {
@@ -32,6 +32,18 @@ class Promo extends \yii\db\ActiveRecord
         return 'promo';
     }
 
+    public static function PromoSaves(int $date_start,int $date_finish,int $sity_id,int $status,string $name){
+        $promo = new static();
+        $promo->date_start=$date_start;
+        $promo->date_finish=$date_finish;
+        $promo->sity_id=$sity_id;
+        $promo->status=$status;
+        $promo->name=$name;
+        return $promo;
+    }
+
+
+
 
     /**
      * @inheritdoc
@@ -39,7 +51,6 @@ class Promo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['date_start', 'date_finish', 'sity_id','staus'], 'requere'],
             [['date_start', 'date_finish', 'sity_id','staus'], 'integer'],
             [['name'], 'string', 'max' => 255],
         ];

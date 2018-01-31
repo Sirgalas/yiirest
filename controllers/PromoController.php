@@ -2,6 +2,9 @@
 
 namespace app\controllers;
 
+use app\forms\PromoForm;
+use app\forms\EditPromoForm;
+use app\services\PromoFormServices;
 use Yii;
 use app\entities\Promo;
 use app\search\PromoSearch;
@@ -14,6 +17,13 @@ use yii\filters\VerbFilter;
  */
 class PromoController extends Controller
 {
+    private $service;
+    public function __construct(string $id,  $module, PromoFormServices $services, array $config = [])
+    {
+        parent::__construct($id, $module, $config);
+        $this->service=$services;
+    }
+
     /**
      * @inheritdoc
      */
@@ -64,14 +74,19 @@ class PromoController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Promo();
+        $form = new PromoForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            try{
+                $promo= $this->service->create($form);
+                return $this->redirect(['view', 'id' => $promo->id]);
+            }catch (\DomainException $ex){
+                Yii::$app->session->setFlash('error', $ex->getMessage());
+            }
         }
 
         return $this->render('create', [
-            'model' => $model,
+            'model' => $form,
         ]);
     }
 
@@ -84,14 +99,19 @@ class PromoController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $promo = $this->findModel($id);
+        $form= new EditPromoForm($promo);
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            try{
+                $promo= $this->service->create($form);
+                return $this->redirect(['view', 'id' => $promo->id]);
+            }catch (\DomainException $ex){
+                Yii::$app->session->setFlash('error', $ex->getMessage());
+            }
         }
-
         return $this->render('update', [
-            'model' => $model,
+            'model' => $form,
+            'promo'=> $promo
         ]);
     }
 
