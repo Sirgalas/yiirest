@@ -18,6 +18,7 @@ class m180129_210537_create_promo_table extends Migration
             'date_start'=>$this->integer(),
             'date_finish'=>$this->integer(),
             'sity_id'=>$this->integer(),
+            'status'=>$this->integer(2)
         ]);
     }
 
