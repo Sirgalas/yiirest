@@ -33,18 +33,22 @@ $this->params['breadcrumbs'][] = $this->title;
             'date_start',
             'date_finish',
             [
-              'attribute'=> 'sity_id',
-              'value'=> function ()use ($model){
-                return $model->city->name;
-              }
+              'attribute'=> 'city_id',
+                'format'=>'raw',
+                'value'=> function()use($model){
+                   $name='';
+                    foreach ($model->city as $city){
+                        $name.='<p>'.$city->name.'</p>';
+                    }
+                    return $name;
+                }
             ],
             [
               'attribute'=>'status',
               'value'=>function()use($model){
                 return $model::$statusArr[$model->status];
               }
-            ],
-            'remuneration'
+            ]
         ],
     ]) ?>
 

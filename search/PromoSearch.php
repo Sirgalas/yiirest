@@ -18,7 +18,7 @@ class PromoSearch extends Promo
     public function rules()
     {
         return [
-            [['id', 'date_start', 'date_finish', 'sity_id'], 'integer'],
+            [['id', 'date_start', 'date_finish', 'city_id'], 'integer'],
             [['name'], 'safe'],
         ];
     }
@@ -62,7 +62,7 @@ class PromoSearch extends Promo
             'id' => $this->id,
             'date_start' => $this->date_start,
             'date_finish' => $this->date_finish,
-            'sity_id' => $this->sity_id,
+            'city_id' => $this->city_id,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);

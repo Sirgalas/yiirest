@@ -13,7 +13,7 @@ class PromoForm extends Model
 {
     public $date_finish;
     public $date_start;
-    public $sity_id;
+    public $city_id;
     public $status;
     public $name;
     public $remuneration;
@@ -22,12 +22,12 @@ class PromoForm extends Model
         return[
                 ['date_finish', 'required', 'message' => 'Date finish has be blank'],
                 ['date_start', 'required', 'message' => 'Date start has be blank'],
-                ['sity_id', 'required', 'message' => 'Need to choose  city'],
+                ['city_id', 'required', 'message' => 'Need to choose  city'],
                 ['status', 'required', 'message' => 'Need to choose status'],
                 ['name', 'required', 'message' => 'Name start has be blank'],
                 [['name'], 'string', 'max' => 255],
-                [['date_start', 'date_finish',],'safe'],
-                [[ 'sity_id','status','remuneration'], 'integer'],
+                [['date_start','city_id', 'date_finish',],'safe'],
+                [[ 'status','remuneration'], 'integer'],
             ];
     }
 

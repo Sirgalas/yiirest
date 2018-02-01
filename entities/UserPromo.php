@@ -23,6 +23,11 @@ class UserPromo extends \yii\db\ActiveRecord
         return 'user_promo';
     }
 
+    public static function primaryKey()
+    {
+        return ['user_id', 'user_id'];
+    }
+
     /**
      * @inheritdoc
      */

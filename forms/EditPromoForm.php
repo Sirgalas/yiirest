@@ -16,7 +16,7 @@ class EditPromoForm extends Model
     public $id;
     public $date_finish;
     public $date_start;
-    public $sity_id;
+    public $city_id;
     public $status;
     public $name;
     public $remuneration;
@@ -26,7 +26,7 @@ class EditPromoForm extends Model
         $this->id=$promo->id;
         $this->date_finish=$promo->date_finish;
         $this->date_start=$promo->date_start;
-        $this->sity_id=$promo->sity_id;
+        $this->city_id=$promo->city_id;
         $this->status=$promo->status;
         $this->name=$promo->name;
         $this->remuneration=$promo->remuneration;
@@ -40,12 +40,12 @@ class EditPromoForm extends Model
         return[
             ['date_finish', 'required', 'message' => 'Date finish has be blank'],
             ['date_start', 'required', 'message' => 'Date start has be blank'],
-            ['sity_id', 'required', 'message' => 'Need to choose  city'],
+            ['city_id', 'required', 'message' => 'Need to choose  city'],
             ['status', 'required', 'message' => 'Need to choose status'],
             ['name', 'required', 'message' => 'Name start has be blank'],
             [['name'], 'string', 'max' => 255],
-            [[ 'sity_id','status','remuneration'], 'integer'],
-            [['date_start', 'date_finish'],'safe']
+            [[ 'status','remuneration'], 'integer'],
+            [['date_start', 'city_id','date_finish'],'safe']
         ];
     }
 }

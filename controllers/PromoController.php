@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\entities\City;
+use app\entities\PromoCity;
 use app\forms\PromoForm;
 use app\forms\EditPromoForm;
 use app\services\PromoEditFormServices;
@@ -111,6 +112,7 @@ class PromoController extends Controller
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try{
                 $promo= $this->editService->create($promo,$form);
+
 
                 return $this->redirect(['view', 'id' => $promo->id]);
             }catch (\DomainException $ex){

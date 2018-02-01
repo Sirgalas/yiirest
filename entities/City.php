@@ -70,6 +70,7 @@ class City extends \yii\db\ActiveRecord
         ];
     }
     public function getPromo(){
-        return $this->hasMany(Promo::className(),['sity_id'=>'id']);
+        return $this->hasMany(Promo::className(), ['id' => 'promo_id'])->viaTable('{{%promo_city}}', ['city_id' => 'id']);
     }
+
 }

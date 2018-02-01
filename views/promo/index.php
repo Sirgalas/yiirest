@@ -30,9 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'date_start',
             'date_finish',
             [
-                'attribute'=> 'sity_id',
+                'attribute'=> 'city_id',
+                'format'=>'raw',
                 'value'=> function ($model){
-                    return $model->city->name;
+                    $name='';
+                    foreach ($model->city as $city){
+                        $name.='<p>'.$city->name.'</p>';
+                    }
+                    return $name;
                 }
             ],
             [

@@ -15,7 +15,7 @@ class PromoFormServices
         $promo=Promo::PromoSaves(
             $form->date_start,
             $form->date_finish,
-            $form->sity_id,
+            $form->city_id,
             $form->status,
             $form->name,
             $form->remuneration

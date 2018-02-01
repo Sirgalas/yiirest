@@ -2,8 +2,9 @@
 namespace app\modules\api\traits;
 
 
-//use api\modules\v1\filters\HttpShopAuth;
 use Yii;
+use yii\filters\auth\HttpBearerAuth;
+
 trait Aplication{
 
     public function behaviors()
@@ -13,11 +14,11 @@ trait Aplication{
         Чтобы пользоваться нашим API посредством ajax-запросов с других доменов
         $behaviors['corsFilter'] = [
             'class' => \yii\filters\Cors::className(),
-        ];
+        ];*/
 
         $behaviors['authenticator'] = [
-            'class' => HttpShopAuth::className()
-        ];*/
+            'class' => HttpBearerAuth::className(),
+        ];
         //Используем только JSON формат
         $behaviors['contentNegotiator'] = [
             'class' => \yii\filters\ContentNegotiator::className(),

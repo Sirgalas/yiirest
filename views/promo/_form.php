@@ -35,10 +35,10 @@ use kartik\select2\Select2;
         ]
     ]);?>
 
-    <?= $form->field($model, 'sity_id')->widget(Select2::classname(), [
+    <?= $form->field($model, 'city_id')->widget(Select2::classname(), [
         'data' => $city,
         'language' => 'en',
-        'options' => ['placeholder' => 'Select a state '],
+        'options' => ['placeholder' => 'Select a state ','multiple' => true],
         'disabled' => ($model->status===$promo::STATUS_NO)?true:false,
         'pluginOptions' => [
             'allowClear' => true
