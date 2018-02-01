@@ -17,7 +17,8 @@ class PromoFormServices
             $form->date_finish,
             $form->sity_id,
             $form->status,
-            $form->name
+            $form->name,
+            $form->remuneration
         );
         if(!$promo->save())
             throw new \RuntimeException('Promo not save');

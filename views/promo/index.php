@@ -29,8 +29,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'date_start',
             'date_finish',
-            'sity_id',
-
+            [
+                'attribute'=> 'sity_id',
+                'value'=> function ($model){
+                    return $model->city->name;
+                }
+            ],
+            [
+                'attribute'=>'status',
+                'value'=>function($model){
+                    return $model::$statusArr[$model->status];
+                }
+            ],
+            'remuneration',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

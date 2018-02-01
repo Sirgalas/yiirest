@@ -19,6 +19,7 @@ class EditPromoForm extends Model
     public $sity_id;
     public $status;
     public $name;
+    public $remuneration;
 
     public function __construct(Promo $promo,array $config = [])
     {
@@ -28,6 +29,7 @@ class EditPromoForm extends Model
         $this->sity_id=$promo->sity_id;
         $this->status=$promo->status;
         $this->name=$promo->name;
+        $this->remuneration=$promo->remuneration;
         parent::__construct($config);
 
     }
@@ -42,7 +44,7 @@ class EditPromoForm extends Model
             ['status', 'required', 'message' => 'Need to choose status'],
             ['name', 'required', 'message' => 'Name start has be blank'],
             [['name'], 'string', 'max' => 255],
-            [[ 'sity_id','status'], 'integer'],
+            [[ 'sity_id','status','remuneration'], 'integer'],
             [['date_start', 'date_finish'],'safe']
         ];
     }

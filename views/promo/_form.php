@@ -47,6 +47,8 @@ use kartik\select2\Select2;
 
     <?= $form->field($model, 'status')->dropDownList($promo::$statusArr)?>
 
+    <?= $form->field($model, 'remuneration')->textInput(['readonly'=>($model->status===$promo::STATUS_NO)?true:false]) ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

@@ -16,6 +16,7 @@ class PromoForm extends Model
     public $sity_id;
     public $status;
     public $name;
+    public $remuneration;
     public function rules()
     {
         return[
@@ -26,7 +27,7 @@ class PromoForm extends Model
                 ['name', 'required', 'message' => 'Name start has be blank'],
                 [['name'], 'string', 'max' => 255],
                 [['date_start', 'date_finish',],'safe'],
-                [[ 'sity_id','status'], 'integer'],
+                [[ 'sity_id','status','remuneration'], 'integer'],
             ];
     }
 

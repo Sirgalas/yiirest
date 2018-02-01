@@ -43,7 +43,8 @@ $this->params['breadcrumbs'][] = $this->title;
               'value'=>function()use($model){
                 return $model::$statusArr[$model->status];
               }
-            ]
+            ],
+            'remuneration'
         ],
     ]) ?>
 
