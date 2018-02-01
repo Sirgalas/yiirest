@@ -11,6 +11,7 @@ namespace app\forms;
 use yii\base\Model;
 class CityForm extends Model
 {
+    public $name;
     public function rules(){
         return [
             ['name', 'required', 'message' => 'City has be blank'],

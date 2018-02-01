@@ -5,13 +5,13 @@ namespace app\services;
 
 
 use app\entities\Promo;
-use app\forms\PromoForm;
+use app\forms\EditPromoForm;
 
-class PromoFormServices
+class PromoEditFormServices
 {
-    public function create(PromoForm $form){
-        if(Promo::find()->where(['name'=>$form->name])->one())
-            throw new \RuntimeException('this promo already exist');
+    public function create(EditPromoForm $form){
+        if(!Promo::find()->where(['name'=>$form->name])->one())
+            throw new \RuntimeException('this promo not find');
         $promo=Promo::PromoSaves(
             $form->date_start,
             $form->date_finish,

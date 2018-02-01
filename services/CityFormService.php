@@ -10,29 +10,28 @@ namespace app\services;
 
 use app\entities\City;
 use app\forms\CityForm;
-use JsonSchema\Exception\RuntimeException;
 
 class CityFormService
 {
     public function create(CityForm $form){
-        if(City::find()->where(['name'=>$form->name]))
-            throw new RuntimeException('this city already exist');
+        if(City::find()->where(['name'=>$form->name])->one())
+            throw new \RuntimeException('this city already exist');
         $city= City::CityCreate(
             $form->name
         );
         if(!$city->save())
-            throw new RuntimeException('City not save');
+            throw new \RuntimeException('City not save');
         return $city;
     }
     public function update(CityForm $form){
         if(!City::find()->where(['name'=>$form->name]))
-            throw new RuntimeException('this city not find');
+            throw new \RuntimeException('this city not find');
         $city= City::CityUpdate(
             $form->name
         );
 
         if(!$city->save())
-            throw new RuntimeException('City not update');
+            throw new \RuntimeException('City not update');
         return $city;
     }
 }

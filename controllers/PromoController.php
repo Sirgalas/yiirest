@@ -2,12 +2,15 @@
 
 namespace app\controllers;
 
+use app\entities\City;
 use app\forms\PromoForm;
 use app\forms\EditPromoForm;
+use app\services\PromoEditFormServices;
 use app\services\PromoFormServices;
 use Yii;
 use app\entities\Promo;
 use app\search\PromoSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -18,10 +21,12 @@ use yii\filters\VerbFilter;
 class PromoController extends Controller
 {
     private $service;
-    public function __construct(string $id,  $module, PromoFormServices $services, array $config = [])
+    private $editService;
+    public function __construct(string $id,  $module, PromoFormServices $services, PromoEditFormServices $editService, array $config = [])
     {
         parent::__construct($id, $module, $config);
         $this->service=$services;
+        $this->editService=$editService;
     }
 
     /**
@@ -74,8 +79,8 @@ class PromoController extends Controller
      */
     public function actionCreate()
     {
+        $promo=new Promo();
         $form = new PromoForm();
-
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try{
                 $promo= $this->service->create($form);
@@ -87,6 +92,8 @@ class PromoController extends Controller
 
         return $this->render('create', [
             'model' => $form,
+            'city'  => ArrayHelper::map(City::find()->asArray()->all(),'id','name'),
+            'promo' => $promo
         ]);
     }
 
@@ -103,7 +110,7 @@ class PromoController extends Controller
         $form= new EditPromoForm($promo);
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try{
-                $promo= $this->service->create($form);
+                $promo= $this->editService->create($form);
                 return $this->redirect(['view', 'id' => $promo->id]);
             }catch (\DomainException $ex){
                 Yii::$app->session->setFlash('error', $ex->getMessage());
@@ -111,7 +118,8 @@ class PromoController extends Controller
         }
         return $this->render('update', [
             'model' => $form,
-            'promo'=> $promo
+            'promo'=> $promo,
+            'city'  => ArrayHelper::map(City::find()->asArray()->all(),'id','name')
         ]);
     }
 

@@ -26,6 +26,7 @@ class m180125_181235_table_user extends Migration
             'updated_at'=>$this->timestamp()->defaultExpression('CURRENT_TIMESTAMP'),
             'flags'=>$this->integer(),
             'last_login_at'=>$this->integer(),
+            'status'=>$this->integer(),
             'access_token'=>$this->string(6)
         ]);
     }

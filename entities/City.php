@@ -3,7 +3,8 @@
 namespace app\entities;
 
 use Yii;
-
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 /**
  * This is the model class for table "city".
  *
@@ -13,6 +14,17 @@ use Yii;
  */
 class City extends \yii\db\ActiveRecord
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => false,
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
     /**
      * @inheritdoc
      */
@@ -25,7 +37,6 @@ class City extends \yii\db\ActiveRecord
     {
         $city = new static();
         $city->name = $name;
-        $city->created_at='now()';
         return $city;
     }
 

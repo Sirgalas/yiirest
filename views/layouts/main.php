@@ -52,7 +52,9 @@ AppAsset::register($this);
             )
             . Html::endForm()
             . '</li>';
-            $menuItems[] = ['label' => 'Create apllication', 'url' => ['/promo/create']];
+            $menuItems[] = ['label' => 'View user', 'url' => ['/user/view']];
+            $menuItems[] = ['label' => 'Create promo', 'url' => ['/promo/index']];
+            $menuItems[] = ['label' => 'Create city', 'url' => ['/city/index']];
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
