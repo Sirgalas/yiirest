@@ -24,12 +24,10 @@ class CityFormService
             throw new \RuntimeException('City not save');
         return $city;
     }
-    public function update(CityEditForm $form){
+    public function update(CityEditForm $form, City $city){
         if(!City::find()->where(['name'=>$form->name]))
             throw new \RuntimeException('this city not find');
-        $city= City::CityUpdate(
-            $form->name
-        );
+        $city->CityUpdate($form->name);
 
         if(!$city->save())
             throw new \RuntimeException('City not update');

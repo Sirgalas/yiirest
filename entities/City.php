@@ -40,11 +40,9 @@ class City extends \yii\db\ActiveRecord
         return $city;
     }
 
-    public static function CityUpdate(string  $name): self
+    public function CityUpdate(string  $name)
     {
-        $city = new static();
-        $city->name = $name;
-        return $city;
+        $this->name = $name;
     }
 
     /**

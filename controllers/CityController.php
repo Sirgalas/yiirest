@@ -101,7 +101,7 @@ class CityController extends Controller
         $form=new CityEditForm($city);
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try{
-                $city= $this->service->update($form);
+                $city= $this->service->update($form,$city);
                 return $this->redirect(['view', 'id' => $city->id]);
             }catch (\DomainException $ex){
                 Yii::$app->session->setFlash('error', $ex->getMessage());
