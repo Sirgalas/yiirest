@@ -5,7 +5,7 @@
 
 $this->title = 'Update City: {nameAttribute}';
 $this->params['breadcrumbs'][] = ['label' => 'Cities', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $city->name, 'url' => ['view', 'id' => $city->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="city-update">
