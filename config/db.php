@@ -8,7 +8,7 @@ if ($_SERVER['SERVER_NAME'] == "yii2promo.herokuapp.com") {
     $dbname = 'd84g9naft02ago';
     $nameHost = 'pgsql';
 }else{
-    $host = 'localhost';
+    $host = 'localhost;';
     $username = 'root';
     $password = '1';
     $dbname = 'yii2catalog';
@@ -17,11 +17,11 @@ if ($_SERVER['SERVER_NAME'] == "yii2promo.herokuapp.com") {
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => $nameHost.':host='.$host.';dbname='.$dbname,
+    'dsn' => $nameHost.':host='.$host.' dbname='.$dbname,
     'username' => $username,
     'password' => $password,
     'charset' => 'utf8',
-
+    'enableSchemaCache' => true,
     // Schema cache options (for production environment)
     //'enableSchemaCache' => true,
     //'schemaCacheDuration' => 60,
