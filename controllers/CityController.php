@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\forms\CityForm;
+use app\forms\CityEditForm;
 use app\services\CityFormService;
 use Yii;
 use app\entities\City;
@@ -97,7 +98,7 @@ class CityController extends Controller
     public function actionUpdate($id)
     {
         $city = $this->findModel($id);
-       $form=new CityForm();
+        $form=new CityEditForm($city);
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try{
                 $city= $this->service->update($form);

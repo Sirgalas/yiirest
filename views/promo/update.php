@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\entities\Promo */
 
-$this->title = 'Update Promo: {nameAttribute}';
+$this->title = 'Update Promo: '.$model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Promos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';

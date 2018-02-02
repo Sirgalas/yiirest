@@ -10,6 +10,7 @@ namespace app\services;
 
 use app\entities\City;
 use app\forms\CityForm;
+use app\forms\CityEditForm;
 
 class CityFormService
 {
@@ -23,7 +24,7 @@ class CityFormService
             throw new \RuntimeException('City not save');
         return $city;
     }
-    public function update(CityForm $form){
+    public function update(CityEditForm $form){
         if(!City::find()->where(['name'=>$form->name]))
             throw new \RuntimeException('this city not find');
         $city= City::CityUpdate(
