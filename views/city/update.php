@@ -1,6 +1,4 @@
-<?php
-
-use yii\helpers\Html;
+<?php use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\entities\City */

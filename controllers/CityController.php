@@ -96,6 +96,7 @@ class CityController extends Controller
      */
     public function actionUpdate($id)
     {
+        $city = $this->findModel($id);
        $form=new CityForm();
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try{
@@ -107,6 +108,7 @@ class CityController extends Controller
         }
         return $this->render('update', [
             'model' => $form,
+            'city'  => $city
         ]);
     }
 

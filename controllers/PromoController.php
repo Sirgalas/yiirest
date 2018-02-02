@@ -112,8 +112,6 @@ class PromoController extends Controller
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try{
                 $promo= $this->editService->create($promo,$form);
-
-
                 return $this->redirect(['view', 'id' => $promo->id]);
             }catch (\DomainException $ex){
                 Yii::$app->session->setFlash('error', $ex->getMessage());

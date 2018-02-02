@@ -11,7 +11,6 @@ namespace app\forms;
 use yii\base\Model;
 class CityForm extends Model
 {
-    public $id;
     public $name;
     public function rules(){
         return [
