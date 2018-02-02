@@ -13,6 +13,7 @@ if (isset($url["host"]) && isset($url["user"]) && isset($url["pass"]) && isset($
     $password = '1';
     $dbname = 'yii2catalog';
 }
+
 return [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host='.$host.';dbname='.$dbname,
