@@ -157,7 +157,7 @@ class SiteController extends Controller
         );
     }
 
-    public function actionTestDB(){
+    public function actionTestDb(){
         $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
         return var_dump($url);
 
