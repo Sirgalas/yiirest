@@ -2,11 +2,11 @@
 
 $host = $username = $password = $dbname = '';
 $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-if (isset($url["host"]) && isset($url["user"]) && isset($url["pass"]) && isset($url["path"])) {
-    $host = $url["host"];
-    $username = $url["user"];
-    $password = $url["pass"];
-    $dbname = substr($url["path"], 1);
+if (if ($_SERVER['SERVER_NAME'] == "yii2promo.herokuapp.com") {) {
+    $host = 'ec2-23-23-92-179.compute-1.amazonaws.com';
+    $username = 'jnnbiayopidmsm';
+    $password = '35e144d16b2d0348d1c6eff69f3b3f3d320c95a75a9d08a02b278d69cd0fd710';
+    $dbname = 'd84g9naft02ago';
 }else{
     $host = 'localhost';
     $username = 'root';
