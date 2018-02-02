@@ -17,7 +17,8 @@ class PromoController extends ActiveController
 
     public function actionGetPromo(){
         $get= Yii::$app->request->get();
-        if($promo=Promo::findOne(['name'=>$get['name']]))
+        $promo=Promo::findOne(['name'=>$get['name']])
+        if(!$promo)
             throw new NotFoundHttpException('error request',404 );
         if(!empty($get['field'])){
             foreach ($get['field'] as $field){
