@@ -42,7 +42,6 @@ class PromoController extends ActiveController
             throw new NotFoundHttpException('error request',400);
         $sql="SELECT * FROM promo INNER JOIN promo_city ON promo_id=id WHERE name='".$get['promo']."' AND city_id=(SELECT id FROM city WHERE name='".$get['city']."')";
         $promo=Promo::findBySql($sql)->one();
-        return var_dump($promo);
         if(!$promo)
             throw new NotFoundHttpException('result not found',404);
         try{
