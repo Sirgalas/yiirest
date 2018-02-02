@@ -157,6 +157,11 @@ class SiteController extends Controller
         );
     }
 
+    public function actionTestDB(){
+        $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+        return var_dump($url);
+
+    }
     /**
      * Resets password.
      *
