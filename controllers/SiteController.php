@@ -125,6 +125,7 @@ class SiteController extends Controller
     public function actionSignup()
     {
         $form = new SignupForm();
+
         if ($form->load(Yii::$app->request->post())&&$form->validate()) {
             try{
                 $user= (new SignupFormService())->signup($form);
@@ -157,12 +158,6 @@ class SiteController extends Controller
         );
     }
 
-    public function actionTestDb(){
-
-        $url = parse_url(getenv("POSTGRESQL_DATABASE_URL"));
-        return var_dump($url);
-
-    }
     /**
      * Resets password.
      *
