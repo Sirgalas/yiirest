@@ -28,6 +28,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 return $model->user->username;
               }
             ],
+            [
+                'attribute' => 'payment',
+                'value' => function($model){
+                        return $model->statusPayment;
+                }
+            ],
             [   'class' => 'yii\grid\ActionColumn',
                 'template' => '{view}',
             ],

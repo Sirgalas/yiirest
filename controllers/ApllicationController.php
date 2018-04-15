@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\entities\Doctors;
 use app\entities\User;
 use SebastianBergmann\GlobalState\RuntimeException;
 use Yii;
@@ -68,7 +69,9 @@ class ApllicationController extends Controller
     public function actionCreate()
     {
         $model = new Aplication();
-
+        $doctors= Doctors::find()->asArray()->all();
+        $doctorsName=ArrayHelper::map($doctors,'id','name');
+        $doctorsSpecialization=ArrayHelper::map($doctors,'id','specialization');
         if (Yii::$app->user->isGuest) {
             $this->redirect(['site/signup']);
         }
@@ -85,6 +88,9 @@ class ApllicationController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'doctorsName'=>$doctorsName,
+            'doctorsSpecialization'=>$doctorsSpecialization
+
         ]);
     }
 
@@ -98,13 +104,17 @@ class ApllicationController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $doctors= Doctors::find()->asArray()->all();
+        $doctorsName=ArrayHelper::map($doctors,'id','name');
+        $doctorsSpecialization=ArrayHelper::map($doctors,'id','specialization');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'doctorsName'=>$doctorsName,
+            'doctorsSpecialization'=>$doctorsSpecialization
         ]);
     }
 

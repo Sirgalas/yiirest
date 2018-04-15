@@ -51,7 +51,7 @@ class Doctors extends \yii\db\ActiveRecord
      */
     public function getDoctorsAplications()
     {
-        return $this->hasMany(DoctorsAplication::className(), ['doctors_id' => 'id']);
+        return $this->hasMany(DoctorsAplication::class, ['doctors_id' => 'id']);
     }
 
     /**
@@ -59,6 +59,6 @@ class Doctors extends \yii\db\ActiveRecord
      */
     public function getAplications()
     {
-        return $this->hasMany(Aplication::className(), ['id' => 'aplication_id'])->viaTable('doctors_aplication', ['doctors_id' => 'id']);
+        return $this->hasMany(Aplication::class, ['id' => 'aplication_id'])->viaTable('doctors_aplication', ['doctors_id' => 'id']);
     }
 }

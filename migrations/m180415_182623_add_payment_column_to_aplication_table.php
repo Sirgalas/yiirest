@@ -12,7 +12,7 @@ class m180415_182623_add_payment_column_to_aplication_table extends Migration
      */
     public function safeUp()
     {
-        $this->addColumn(Aplication::tableName(),'payment',$this->boolean());
+        $this->addColumn(Aplication::tableName(),'payment',$this->boolean()->defaultValue(false));
     }
 
     /**
