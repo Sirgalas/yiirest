@@ -94,7 +94,29 @@ class ApllicationController extends Controller
         ]);
     }
 
-   
+    /**
+     * Updates an existing Aplication model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+        $doctors= Doctors::find()->asArray()->all();
+        $doctorsName=ArrayHelper::map($doctors,'id','name');
+        $doctorsSpecialization=ArrayHelper::map($doctors,'id','specialization');
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+            'doctorsName'=>$doctorsName,
+            'doctorsSpecialization'=>$doctorsSpecialization
+        ]);
+    }
 
     /**
      * Deletes an existing Aplication model.

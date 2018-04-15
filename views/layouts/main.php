@@ -52,6 +52,7 @@ AppAsset::register($this);
             . '</li>';
             $menuItems[] = ['label' => 'Create apllication', 'url' => ['/apllication/create']];
             $menuItems[] = ['label' => 'Search apllication', 'url' => ['/apllication/search']];
+            $menuItems[] = ['label' => 'Doctors', 'url' => ['/doctors']];
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
