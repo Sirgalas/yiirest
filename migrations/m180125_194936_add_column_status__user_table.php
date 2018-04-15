@@ -1,7 +1,7 @@
 <?php
 
 use yii\db\Migration;
-
+use app\entities\User;
 /**
  * Class m180125_194936_add_column_status__user_table
  */
@@ -12,7 +12,7 @@ class m180125_194936_add_column_status__user_table extends Migration
      */
     public function safeUp()
     {
-        $this->addColumn('user','status',$this->integer());
+        $this->addColumn(User::tableName(),'status',$this->integer());
     }
 
     /**
@@ -20,7 +20,7 @@ class m180125_194936_add_column_status__user_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('user','status');
+        $this->dropTable(User::tableName(),'status');
     }
 
 }

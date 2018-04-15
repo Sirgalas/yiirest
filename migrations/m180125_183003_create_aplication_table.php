@@ -12,7 +12,7 @@ class m180125_183003_create_aplication_table extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('aplication', [
+        $this->createTable('{{%aplication}}', [
             'id' => $this->primaryKey(),
             'title'=>$this->string(255)->notNull(),
             'content'=>$this->string(610),
@@ -27,6 +27,6 @@ class m180125_183003_create_aplication_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('aplication');
+        $this->dropTable('{{%aplication}}');
     }
 }

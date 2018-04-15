@@ -12,7 +12,7 @@ class m180126_120813_create_comemt_aplication_table extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('comment_aplication', [
+        $this->createTable('{{%comment_aplication}}', [
             'id' => $this->primaryKey(),
             'user_id'=>$this->integer()->notNull(),
             'id_aplication'=>$this->integer()->notNull(),

@@ -1,6 +1,7 @@
 <?php
 
 use yii\db\Migration;
+use app\entities\User;
 
 /**
  * Class m180127_072153_add_column_password_reset_token_from_user_table
@@ -12,7 +13,7 @@ class m180127_072153_add_column_password_reset_token_from_user_table extends Mig
      */
     public function safeUp()
     {
-        $this->addColumn('user','password_reset_token',$this->string(255));
+        $this->addColumn(User::tableName(),'password_reset_token',$this->string(255));
 
     }
 
@@ -21,6 +22,6 @@ class m180127_072153_add_column_password_reset_token_from_user_table extends Mig
      */
     public function safeDown()
     {
-       $this->dropColumn('user','password_reset_token',$this->string(255));
+       $this->dropColumn(User::tableName(),'password_reset_token',$this->string(255));
     }
 }

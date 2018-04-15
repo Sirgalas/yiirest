@@ -12,7 +12,7 @@ class m180125_181235_table_user extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('user',[
+        $this->createTable('{{%user}}',[
             'id'=>$this->primaryKey(),
             'username'=>$this->string(255),
             'email'=>$this->string(255),
@@ -34,7 +34,7 @@ class m180125_181235_table_user extends Migration
      */
     public function safeDown()
     {
-       $this->dropTable('uesr');
+       $this->dropTable('{{%user}}');
     }
 
 }
