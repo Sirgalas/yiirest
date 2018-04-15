@@ -61,40 +61,7 @@ class ApllicationController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Aplication model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new Aplication();
-        $doctors= Doctors::find()->asArray()->all();
-        $doctorsName=ArrayHelper::map($doctors,'id','name');
-        $doctorsSpecialization=ArrayHelper::map($doctors,'id','specialization');
-        if (Yii::$app->user->isGuest) {
-            $this->redirect(['site/signup']);
-        }
-        if ($model->load(Yii::$app->request->post()) ) {
-            try{
-                if(!$model->save())
-                    throw new RuntimeException($model->errors());
-            }catch(RuntimeException $ex){
-                Yii::$app->errorHandler->logException($ex);
-                Yii::$app->session->setFlash('error',$ex->getMessage());
-            }
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-            'doctorsName'=>$doctorsName,
-            'doctorsSpecialization'=>$doctorsSpecialization
-
-        ]);
-    }
-
-    /**
+     /**
      * Updates an existing Aplication model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id

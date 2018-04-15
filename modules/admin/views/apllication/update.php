@@ -24,6 +24,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'content')->textarea(['maxlength' => true]) ?>
 
         <?= $form->field($model , 'payment')->dropDownList($model->allPaymentStatus) ?>
+        
+        <?= $form->field($model, 'doctorsName')->dropDownList($doctorsName); ?>
+
+        <?= $form->field($model, 'doctorsSpecialization')->dropDownList($doctorsSpecialization); ?>
 
         <div class="form-group">
             <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
