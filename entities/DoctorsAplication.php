@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $doctors_id
  * @property int $aplication_id
- *
+ * @property int $specialization
  * @property Aplication $aplication
  * @property Doctors $doctors
  */
@@ -30,10 +30,10 @@ class DoctorsAplication extends \yii\db\ActiveRecord
     {
         return [
             [['doctors_id', 'aplication_id'], 'required'],
-            [['doctors_id', 'aplication_id'], 'integer'],
+            [['doctors_id', 'aplication_id','specialization'], 'integer'],
             [['doctors_id', 'aplication_id'], 'unique', 'targetAttribute' => ['doctors_id', 'aplication_id']],
-            [['aplication_id'], 'exist', 'skipOnError' => true, 'targetClass' => Aplication::className(), 'targetAttribute' => ['aplication_id' => 'id']],
-            [['doctors_id'], 'exist', 'skipOnError' => true, 'targetClass' => Doctors::className(), 'targetAttribute' => ['doctors_id' => 'id']],
+            [['aplication_id'], 'exist', 'skipOnError' => true, 'targetClass' => Aplication::class, 'targetAttribute' => ['aplication_id' => 'id']],
+            [['doctors_id'], 'exist', 'skipOnError' => true, 'targetClass' => Doctors::class, 'targetAttribute' => ['doctors_id' => 'id']],
         ];
     }
 
@@ -53,7 +53,7 @@ class DoctorsAplication extends \yii\db\ActiveRecord
      */
     public function getAplication()
     {
-        return $this->hasOne(Aplication::className(), ['id' => 'aplication_id']);
+        return $this->hasOne(Aplication::class, ['id' => 'aplication_id']);
     }
 
     /**
@@ -61,6 +61,6 @@ class DoctorsAplication extends \yii\db\ActiveRecord
      */
     public function getDoctors()
     {
-        return $this->hasOne(Doctors::className(), ['id' => 'doctors_id']);
+        return $this->hasOne(Doctors::class, ['id' => 'doctors_id']);
     }
 }
