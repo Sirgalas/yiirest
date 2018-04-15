@@ -1,0 +1,66 @@
+<?php
+
+namespace app\entities;
+
+use Yii;
+
+/**
+ * This is the model class for table "doctors_aplication".
+ *
+ * @property int $doctors_id
+ * @property int $aplication_id
+ *
+ * @property Aplication $aplication
+ * @property Doctors $doctors
+ */
+class DoctorsAplication extends \yii\db\ActiveRecord
+{
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'doctors_aplication';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['doctors_id', 'aplication_id'], 'required'],
+            [['doctors_id', 'aplication_id'], 'integer'],
+            [['doctors_id', 'aplication_id'], 'unique', 'targetAttribute' => ['doctors_id', 'aplication_id']],
+            [['aplication_id'], 'exist', 'skipOnError' => true, 'targetClass' => Aplication::className(), 'targetAttribute' => ['aplication_id' => 'id']],
+            [['doctors_id'], 'exist', 'skipOnError' => true, 'targetClass' => Doctors::className(), 'targetAttribute' => ['doctors_id' => 'id']],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'doctors_id' => 'Doctors ID',
+            'aplication_id' => 'Aplication ID',
+        ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAplication()
+    {
+        return $this->hasOne(Aplication::className(), ['id' => 'aplication_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDoctors()
+    {
+        return $this->hasOne(Doctors::className(), ['id' => 'doctors_id']);
+    }
+}
