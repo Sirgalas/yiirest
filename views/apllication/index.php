@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel app\search\AplicationSearch */
@@ -39,14 +39,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label'=>'specialization',
                 'value'=>function($model){
                     return $model->specialization->title;
-                }
+                },
+                'filterType'=>GridView::FILTER_SELECT2,
+                'filter'=>$specialization
             ],
             [
                 'attribute'=>'science_degree_id',
                 'label'=>'Science Degree',
                 'value'=>function($model){
                     return $model->scienceDegree->name;
-                }
+                },
+                'filterType'=>GridView::FILTER_SELECT2,
+                'filter'=>$science
             ],
             [   'class' => 'yii\grid\ActionColumn',
                 'template' => '{view}{delete}',

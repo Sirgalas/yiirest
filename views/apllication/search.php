@@ -32,7 +32,7 @@ use kartik\select2\Select2;
             'allowClear' => true
         ],
     ]); ?>
-    <?= $form->field($model, 'specialization')->widget(Select2::classname(), [
+    <?= $form->field($model, 'specialization_id')->widget(Select2::classname(), [
         'data' => $specialization,
         'language' => 'en',
         'options' => ['placeholder' => 'Select a specialization'],

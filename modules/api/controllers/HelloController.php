@@ -13,7 +13,8 @@ class HelloController extends ActiveController
 
     use \app\modules\api\traits\Aplication;
 
-    public function actionHello(){
-       return ['hello'=>'World'];
+    public function actionHello()
+    {
+        return ['hello' => 'World'];
     }
 }

@@ -11,7 +11,8 @@ use yii\rest\ActiveController;
 use app\entities\Aplication;
 use app\modules\api\services\LoginRestService;
 use app\modules\api\services\SearchRestService;
-class ApllicationController extends ActiveController
+
+class ApplicationController extends ActiveController
 {
 
     public $modelClass = 'app\entities\Aplication';
@@ -33,14 +34,17 @@ class ApllicationController extends ActiveController
         if(!isset($params['token']))
             throw new BadRequestHttpException('get params token must be blank');
         $user=$this->serviceLogin->auth($params['token']);
-        Yii::$app->user->login($user);
+        if(!Yii::$app->user->login($user))
+            throw new \Exception('User not login');
         $application= new Aplication([
             'title'=>$params['title'],
-            'content'=>$params['content']
+            'content'=>$params['content'],
+            'specialization_id'=>$params['specialization_id']?$params['specialization_id']:null,
+            'science_degree_id'=>$params['science_degree_id']?$params['science_degree_id']:null,
         ]);
         try{
             if(!$application->save())
-                throw new BadRequestHttpException('Error data' . json_encode($application->errors));
+                throw new BadRequestHttpException('Error data' . print_r($application->getErrors(), 1));
 
             $this->setHeader(200);
             return array('request' => 'Application saved by id '.$application->id);
@@ -48,11 +52,19 @@ class ApllicationController extends ActiveController
             throw new BadRequestHttpException($ex->getMessage());
         }
     }
-    public function actionSearch(){
+    public function actionSpecialization(){
         $params=Yii::$app->request->get();
-        $apllication=$this->serviceSearch->search($params);
+        if(!isset($params['token']))
+            throw new BadRequestHttpException('get params token must be blank');
+        $user=$this->serviceLogin->auth($params['token']);
+        if(!Yii::$app->user->login($user))
+            throw new \Exception('User not login');
+        unset($params['token']);
+        $params['user_aplication']=$user->id;
+        $application=Aplication::find()->where($params)->all();
         $this->setHeader(200);
-        return $apllication;
+        return $application;
 
     }
+    
 }

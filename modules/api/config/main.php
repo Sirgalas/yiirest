@@ -28,12 +28,12 @@ return [
             'rules' => [
                [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => '/user',
+                    'controller' => 'user',
                     'extraPatterns' => [
                         'GET registration' => 'registration',
                         'OPTIONS registration' => 'options',
                         'GET login' => 'login',
-                        'OPTIONS logig' => 'options',
+                        'OPTIONS login' => 'options',
                         'GET requestPasswordReset' => 'request-password-reset',
                         'OPTIONS requestPasswordReset' => 'options',
                         'GET resetPassword' => 'reset-password',
@@ -42,9 +42,9 @@ return [
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => '/application',
+                    'controller' => 'application',
                     'extraPatterns' => [
-                        'GET add' => 'add',
+                        'POST add' => 'add',
                         'OPTIONS add' => 'add',
                         'GET search' => 'search',
                         'OPTIONS search' => 'search',
@@ -52,12 +52,14 @@ return [
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => 'comment-apllication',
+                    'controller' => 'directory',
                     'extraPatterns' => [
-                        'GET create' => 'create',
-                        'OPTIONS create' => 'create',
-                        'GET view' => 'view',
-                        'OPTIONS view' => 'view',
+                        'GET doctor' => 'doctor',
+                        'OPTIONS doctor' => 'doctor',
+                        'GET specialization' => 'specialization',
+                        'OPTIONS specialization' => 'specialization',
+                        'GET science' => 'science',
+                        'OPTIONS science' => 'science',
                     ]
                 ],
                 [
@@ -67,7 +69,6 @@ return [
                         'GET hello'=>'hello'
                     ]
                 ],
-
             ],
         ]
     ],

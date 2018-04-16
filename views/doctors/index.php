@@ -27,8 +27,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'title',
-            'specialization',
+            [
+                'attribute'=>'specialization_id',
+                'label'=>'specialization',
+                'value'=>function($model){
+                    return $model->specialization->title;
+                }
+            ],
+            [
+                'attribute'=>'science_degree_id',
+                'label'=>'Science Degree',
+                'value'=>function($model){
+                    return $model->scienceDegree->name;
+                }
+            ],
 
         ],
     ]); ?>

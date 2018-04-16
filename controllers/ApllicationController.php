@@ -43,10 +43,13 @@ class ApllicationController extends Controller
     {
         $searchModel = new AplicationSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $specialization=ArrayHelper::map(Specialization::find()->asArray()->all(),'id','title');
+        $science=ArrayHelper::map(ScienceDegree::find()->asArray()->all(),'id','name');
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'specialization'=>$specialization,
+            'science'=>$science
         ]);
     }
 
@@ -116,7 +119,7 @@ class ApllicationController extends Controller
         $aplication=ArrayHelper::map(Aplication::find()->where(['user_aplication'=>Yii::$app->user->identity->id])->asArray()->all(),'id','title');
         $specialization=ArrayHelper::map(Specialization::find()->asArray()->all(),'id','title');
         $science=ArrayHelper::map(ScienceDegree::find()->asArray()->all(),'id','name');
-        $model=new Aplication(['scenario' => Aplication::SCENARIO_SEARCH]);
+        $model=new AplicationSearch(['scenario' => Aplication::SCENARIO_SEARCH]);
          return $this->render('search',[
             'user'=>$users,
             'model'=>$model,
