@@ -54,7 +54,7 @@ class Doctors extends \yii\db\ActiveRecord
      */
     
     public function getScienceDegree(){
-        return $this->hasOne(ScienceDegree::className(),['id'=>'specialization_id']);
+        return $this->hasOne(ScienceDegree::className(),['id'=>'science_degree_id']);
     }
     
     /**

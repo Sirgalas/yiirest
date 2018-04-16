@@ -8,8 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var $model app\entities\Aplication */
 
 $this->title = 'Create Aplication';
-$this->params['breadcrumbs'][] = ['label' => 'Aplications', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="aplication-create">
 

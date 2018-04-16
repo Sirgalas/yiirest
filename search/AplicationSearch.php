@@ -18,7 +18,7 @@ class AplicationSearch extends Aplication
     public function rules()
     {
         return [
-            [['id', 'create_at', 'user_aplication', 'user_request'], 'integer'],
+            [['id', 'create_at', 'user_aplication', 'user_request','specialization_id','science_degree_id'], 'integer'],
             [['title', 'content'], 'safe'],
         ];
     }
@@ -63,6 +63,9 @@ class AplicationSearch extends Aplication
             'create_at' => $this->create_at,
             'user_aplication' => $this->user_aplication,
             'user_request' => $this->user_request,
+            'specialization_id'=>$this->specialization_id,
+            'science_degree_id'=>$this->science_degree_id
+            
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

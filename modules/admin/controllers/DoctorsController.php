@@ -75,6 +75,8 @@ class DoctorsController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'specialization'=>$specialization,
+            'science'=>$science
         ]);
     }
 
@@ -88,13 +90,16 @@ class DoctorsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $specialization=ArrayHelper::map(Specialization::find()->asArray()->all(),'id','title');
+        $science=ArrayHelper::map(ScienceDegree::find()->asArray()->all(),'id','name');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'specialization'=>$specialization,
+            'science'=>$science
         ]);
     }
 

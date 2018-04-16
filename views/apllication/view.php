@@ -8,8 +8,7 @@ use app\widgets\Comment;
 /* @var $model app\entities\Aplication */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Aplications', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="aplication-view">
 
@@ -33,7 +32,20 @@ $this->params['breadcrumbs'][] = $this->title;
                         return $model->user->username;
                     }
             ],
+            [
+                'attribute'=>'specialization_id',
+                'label'=>'specialization',
+                'value'=>function($model){
+                    return $model->specialization->title;
+                }
+            ],
+            [
+                'attribute'=>'science_degree_id',
+                'label'=>'Science Degree',
+                'value'=>function($model){
+                    return $model->scienceDegree->name;
+                }
+            ],
         ],
     ]) ?>
-    <?= Comment::widget(['id_application'=>$model->id]) ?>
 </div>

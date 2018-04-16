@@ -32,6 +32,23 @@ use kartik\select2\Select2;
             'allowClear' => true
         ],
     ]); ?>
+    <?= $form->field($model, 'specialization')->widget(Select2::classname(), [
+        'data' => $specialization,
+        'language' => 'en',
+        'options' => ['placeholder' => 'Select a specialization'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]); ?>
+
+    <?= $form->field($model, 'science_degree_id')->widget(Select2::classname(), [
+        'data' => $science,
+        'language' => 'en',
+        'options' => ['placeholder' => 'Select Science degree'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]); ?>
     <?= $form->field($model, 'title') ?>
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

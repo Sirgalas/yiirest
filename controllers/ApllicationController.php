@@ -114,11 +114,15 @@ class ApllicationController extends Controller
     public function actionSearch(){
         $users=ArrayHelper::map(User::find()->asArray()->all(),'id','username');
         $aplication=ArrayHelper::map(Aplication::find()->where(['user_aplication'=>Yii::$app->user->identity->id])->asArray()->all(),'id','title');
+        $specialization=ArrayHelper::map(Specialization::find()->asArray()->all(),'id','title');
+        $science=ArrayHelper::map(ScienceDegree::find()->asArray()->all(),'id','name');
         $model=new Aplication(['scenario' => Aplication::SCENARIO_SEARCH]);
          return $this->render('search',[
             'user'=>$users,
             'model'=>$model,
-            'aplication'=>$aplication
+            'aplication'=>$aplication,
+             'specialization'=>$specialization,
+             'science'=>$science
         ]);
     }
 
