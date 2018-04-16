@@ -15,8 +15,9 @@ use app\entities\DoctorsAplication;
  * @property int $user_aplication
  * @property int $user_request
  * @property boolean $payment
- * @property int $doctorsName
+ * @property int $doctorsTitle
  * @property int $doctorsSpecialization
+ *
  */
 class Aplication extends \yii\db\ActiveRecord
 {
@@ -28,7 +29,7 @@ class Aplication extends \yii\db\ActiveRecord
         self::NOTPAYMENT=>'not payment'
     ];
     
-    public $doctorsName;
+    public $doctorsTitle;
     public $doctorsSpecialization;
     
     /**
@@ -58,7 +59,7 @@ class Aplication extends \yii\db\ActiveRecord
             [['create_at', 'user_aplication', 'user_request'], 'integer'],
             [['title'], 'string', 'max' => 255],
             [['content'], 'string', 'max' => 610],
-            [['payment','doctorsName','doctorsSpecialization'],'integer']
+            [['payment','doctorsTitle','doctorsSpecialization'],'integer']
         ];
     }
 

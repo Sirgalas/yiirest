@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'content')->textarea(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'doctorsName')->dropDownList($doctorsName); ?>
+        <?= $form->field($model, 'doctorsTitle')->dropDownList($doctorsTitle); ?>
 
         <?= $form->field($model, 'doctorsSpecialization')->dropDownList($doctorsSpecialization); ?>
 

@@ -70,7 +70,7 @@ class ApllicationController extends Controller
     {
         $model = new Aplication();
         $doctors= Doctors::find()->asArray()->all();
-        $doctorsName=ArrayHelper::map($doctors,'id','name');
+        $doctorsTitle=ArrayHelper::map($doctors,'id','title');
         $doctorsSpecialization=ArrayHelper::map($doctors,'id','specialization');
         if (Yii::$app->user->isGuest) {
             $this->redirect(['site/signup']);
@@ -88,7 +88,7 @@ class ApllicationController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-            'doctorsName'=>$doctorsName,
+            'doctorsTitle'=>$doctorsTitle,
             'doctorsSpecialization'=>$doctorsSpecialization
 
         ]);

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers;
+namespace app\modules\admin\controllers;
 
 use app\entities\Doctors;
 use app\entities\User;
@@ -72,7 +72,7 @@ class ApllicationController extends Controller
     {
         $model = $this->findModel($id);
         $doctors= Doctors::find()->asArray()->all();
-        $doctorsName=ArrayHelper::map($doctors,'id','name');
+        $doctorsTitle=ArrayHelper::map($doctors,'id','title');
         $doctorsSpecialization=ArrayHelper::map($doctors,'id','specialization');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -80,7 +80,7 @@ class ApllicationController extends Controller
 
         return $this->render('update', [
             'model' => $model,
-            'doctorsName'=>$doctorsName,
+            'doctorsTitle'=>$doctorsTitle,
             'doctorsSpecialization'=>$doctorsSpecialization
         ]);
     }

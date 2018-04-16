@@ -3,6 +3,8 @@
 namespace app\entities;
 
 use Yii;
+use app\entities\ScienceDegree;
+use app\entities\Specialization;
 
 /**
  * This is the model class for table "doctors".
@@ -10,9 +12,10 @@ use Yii;
  * @property int $id
  * @property string $name
  * @property string $specialization
- *
- * @property DoctorsAplication[] $doctorsAplications
+ * @property string $title
  * @property Aplication[] $aplications
+ * @property int $specialization_id
+ * @property int $science_degree_id
  */
 class Doctors extends \yii\db\ActiveRecord
 {
@@ -30,7 +33,8 @@ class Doctors extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'specialization'], 'string', 'max' => 255],
+            [['name','title', 'specialization'], 'string', 'max' => 255],
+            [['specialization_id','science_degree_id'],'integer']
         ];
     }
 
@@ -42,6 +46,7 @@ class Doctors extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
+            'title' => 'Title',
             'specialization' => 'Specialization',
         ];
     }
@@ -49,16 +54,16 @@ class Doctors extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDoctorsAplications()
-    {
-        return $this->hasMany(DoctorsAplication::class, ['doctors_id' => 'id']);
+    
+    public function getScienceDegree(){
+        return $this->hasOne(ScienceDegree::className(),['id'=>'specialization_id']);
     }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAplications()
-    {
-        return $this->hasMany(Aplication::class, ['id' => 'aplication_id'])->viaTable('doctors_aplication', ['doctors_id' => 'id']);
+    
+    public function getSpecialization(){
+        return $this->hasOne(Specialization::className(),['id'=>'specialization_id']);
     }
 }
