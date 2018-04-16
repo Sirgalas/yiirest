@@ -5,12 +5,12 @@ namespace app\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\entities\Doctors;
+use app\entities\Specialization;
 
 /**
- * DoctorsSearch represents the model behind the search form of `app\entities\Doctors`.
+ * SearchSpecialization represents the model behind the search form of `app\entities\Specialization`.
  */
-class DoctorsSearch extends Doctors
+class SearchSpecialization extends Specialization
 {
     /**
      * @inheritdoc
@@ -19,7 +19,7 @@ class DoctorsSearch extends Doctors
     {
         return [
             [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['title', 'coment'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class DoctorsSearch extends Doctors
      */
     public function search($params)
     {
-        $query = Doctors::find();
+        $query = Specialization::find();
 
         // add conditions that should always apply here
 
@@ -60,11 +60,10 @@ class DoctorsSearch extends Doctors
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'specialization_id'=>$this->specialization_id,
-            'science_degree_id'=>$this->science_degree_id
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'coment', $this->coment]);
 
         return $dataProvider;
     }

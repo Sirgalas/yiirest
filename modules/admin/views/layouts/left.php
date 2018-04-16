@@ -31,9 +31,10 @@
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
                  ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
-
                  ['label' => 'Directory','url' => '/admin/doctors'],
-                 ['label' => 'Apllication', 'url' => '/admin/apllication']
+                 ['label' => 'Apllication', 'url' => '/admin/apllication'],
+                 ['label' => 'Science Degree', 'url' => '/admin/science-degree'],
+                 ['label' => 'Specialization', 'url' => '/admin/specialization']
                 ],
             ]
         ) ?>

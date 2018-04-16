@@ -11,8 +11,6 @@ use app\entities\Specialization;
  *
  * @property int $id
  * @property string $name
- * @property string $specialization
- * @property string $title
  * @property Aplication[] $aplications
  * @property int $specialization_id
  * @property int $science_degree_id
@@ -33,7 +31,7 @@ class Doctors extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name','title', 'specialization'], 'string', 'max' => 255],
+            [['name'], 'string', 'max' => 255],
             [['specialization_id','science_degree_id'],'integer']
         ];
     }
@@ -46,8 +44,8 @@ class Doctors extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
-            'title' => 'Title',
-            'specialization' => 'Specialization',
+            'specialization_id' => 'Specialization',
+            'science_degree_id'=>  'Science degree'
         ];
     }
 

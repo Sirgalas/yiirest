@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\search\DoctorsSearch */
+/* @var $searchModel app\search\SearchSpecialization */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Doctors';
+$this->title = 'Specializations';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="doctors-index">
+<div class="specialization-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Doctors', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Specialization', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -24,9 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'name',
-            'specialization_id',
-            'science_degree_id',
+            'title',
+            'coment:ntext',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

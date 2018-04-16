@@ -2,20 +2,17 @@
 
 namespace app\modules\admin\controllers;
 
-use app\entities\ScienceDegree;
-use app\entities\Specialization;
 use Yii;
-use app\entities\Doctors;
-use app\search\DoctorsSearch;
-use yii\helpers\ArrayHelper;
+use app\entities\Specialization;
+use app\search\SearchSpecialization;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * DoctorsController implements the CRUD actions for Doctors model.
+ * SpecializationController implements the CRUD actions for Specialization model.
  */
-class DoctorsController extends Controller
+class SpecializationController extends Controller
 {
     /**
      * @inheritdoc
@@ -33,12 +30,12 @@ class DoctorsController extends Controller
     }
 
     /**
-     * Lists all Doctors models.
+     * Lists all Specialization models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new DoctorsSearch();
+        $searchModel = new SearchSpecialization();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -46,8 +43,9 @@ class DoctorsController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+
     /**
-     * Displays a single Doctors model.
+     * Displays a single Specialization model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -60,15 +58,14 @@ class DoctorsController extends Controller
     }
 
     /**
-     * Creates a new Doctors model.
+     * Creates a new Specialization model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Doctors();
-        $specialization=ArrayHelper::map(Specialization::find()->asArray()->all(),'id','title');
-        $science=ArrayHelper::map(ScienceDegree::find()->asArray()->all(),'id','name');
+        $model = new Specialization();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -79,7 +76,7 @@ class DoctorsController extends Controller
     }
 
     /**
-     * Updates an existing Doctors model.
+     * Updates an existing Specialization model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -99,7 +96,7 @@ class DoctorsController extends Controller
     }
 
     /**
-     * Deletes an existing Doctors model.
+     * Deletes an existing Specialization model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -113,20 +110,18 @@ class DoctorsController extends Controller
     }
 
     /**
-     * Finds the Doctors model based on its primary key value.
+     * Finds the Specialization model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Doctors the loaded model
+     * @return Specialization the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Doctors::findOne($id)) !== null) {
+        if (($model = Specialization::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-    
-   
 }

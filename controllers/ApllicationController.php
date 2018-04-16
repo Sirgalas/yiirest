@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\entities\Doctors;
+use app\entities\ScienceDegree;
+use app\entities\Specialization;
 use app\entities\User;
 use SebastianBergmann\GlobalState\RuntimeException;
 use Yii;
@@ -69,9 +71,8 @@ class ApllicationController extends Controller
     public function actionCreate()
     {
         $model = new Aplication();
-        $doctors= Doctors::find()->asArray()->all();
-        $doctorsTitle=ArrayHelper::map($doctors,'id','title');
-        $doctorsSpecialization=ArrayHelper::map($doctors,'id','specialization');
+        $specialization=ArrayHelper::map(Specialization::find()->asArray()->all(),'id','title');
+        $science=ArrayHelper::map(ScienceDegree::find()->asArray()->all(),'id','name');
         if (Yii::$app->user->isGuest) {
             $this->redirect(['site/signup']);
         }
@@ -88,8 +89,8 @@ class ApllicationController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-            'doctorsTitle'=>$doctorsTitle,
-            'doctorsSpecialization'=>$doctorsSpecialization
+            'specialization'=>$specialization,
+            'science'=>$science
 
         ]);
     }
