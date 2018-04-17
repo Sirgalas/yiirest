@@ -39,20 +39,20 @@ AppAsset::register($this);
 
     ];
             if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => Yii::t('app','Signup'), 'url' => ['/site/signup']];
+        $menuItems[] = ['label' => Yii::t('app','Login'), 'url' => ['/site/login']];
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                Yii::t('app','Logout').'(' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
             . '</li>';
-            $menuItems[] = ['label' => 'Create apllication', 'url' => ['/apllication/create']];
-            $menuItems[] = ['label' => 'Search apllication', 'url' => ['/apllication/search']];
-            $menuItems[] = ['label' => 'Doctors', 'url' => ['/doctors']];
+            $menuItems[] = ['label' => Yii::t('app','Create apllication'), 'url' => ['/apllication/create']];
+            $menuItems[] = ['label' => Yii::t('app','Search apllication'), 'url' => ['/apllication/search']];
+            $menuItems[] = ['label' => Yii::t('app','Doctors'), 'url' => ['/doctors']];
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],

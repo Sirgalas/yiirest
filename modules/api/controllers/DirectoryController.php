@@ -40,14 +40,15 @@ class DirectoryController extends ActiveController
     public function actionDoctor()
     {
         $params = Yii::$app->request->get();
-        if (!isset($params['token'])) {
-            throw new BadRequestHttpException('get params token must be blank');
-        }
+        if($params['lang'])
+            Yii::$app->language=$params['lang'];
+        if (!isset($params['token']))
+            throw new BadRequestHttpException(Yii::t('error','Token'));
         $user = $this->serviceLogin->auth($params['token']);
-        if (!Yii::$app->user->login($user)) {
-            throw new \Exception('User not login');
-        }
+        if(!Yii::$app->user->login($user))
+            throw new \Exception(Yii::t('error','User'));
         unset($params['token']);
+        unset($params['lang']);
         $doctors = Doctors::find()->all();
         if (!empty($params)) {
             $doctors = Doctors::find()->where($params)->all();
@@ -62,33 +63,42 @@ class DirectoryController extends ActiveController
     public function actionSpecialization()
     {
         $params = Yii::$app->request->get();
+        if($params['lang'])
+            Yii::$app->language=$params['lang'];
         if (!isset($params['token']))
-            throw new BadRequestHttpException('get params token must be blank');
+            throw new BadRequestHttpException(Yii::t('error','Token'));
+
         $user = $this->serviceLogin->auth($params['token']);
-        Yii::$app->user->login($user);
+        if(!Yii::$app->user->login($user))
+            throw new \Exception(Yii::t('error','User'));
         unset($params['token']);
+        unset($params['lang']);
         $specialization = Specialization::find()->all();
         if (!empty($params))
             $specialization = Specialization::find()->where($params)->all();
 
         if (!empty($specialization))
             return $specialization;
-        return ['success' => 'not find'];
+        return ['success' => Yii::t('app','Not Find')];
     }
 
     public function actionScience()
     {
         $params = Yii::$app->request->get();
+        if($params['lang'])
+            Yii::$app->language=$params['lang'];
         if (!isset($params['token']))
-            throw new BadRequestHttpException('get params token must be blank');
+            throw new BadRequestHttpException(Yii::t('error','Token'));
         $user = $this->serviceLogin->auth($params['token']);
-        Yii::$app->user->login($user);
+        if(!Yii::$app->user->login($user))
+            throw new \Exception(Yii::t('error','User'));
         unset($params['token']);
+        unset($params['lang']);
         $science= ScienceDegree::find()->all();
         if (!empty($params))
             $science = ScienceDegree::find()->where($params)->all();
         if (!empty($science))
             return $science;
-        return ['success' => 'not find'];
+        return ['success' => Yii::t('app','Not Find')];
     }
 }

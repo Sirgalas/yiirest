@@ -31,11 +31,13 @@ class ApplicationController extends ActiveController
 
     public function actionAdd(){
         $params=Yii::$app->request->get();
+        if($params['lang'])
+            Yii::$app->language=$params['lang'];
         if(!isset($params['token']))
-            throw new BadRequestHttpException('get params token must be blank');
+            throw new BadRequestHttpException(Yii::t('error','Token'));
         $user=$this->serviceLogin->auth($params['token']);
         if(!Yii::$app->user->login($user))
-            throw new \Exception('User not login');
+            throw new \Exception(Yii::t('error','User'));
         $application= new Aplication([
             'title'=>$params['title'],
             'content'=>$params['content'],
@@ -44,22 +46,25 @@ class ApplicationController extends ActiveController
         ]);
         try{
             if(!$application->save())
-                throw new BadRequestHttpException('Error data' . print_r($application->getErrors(), 1));
+                throw new BadRequestHttpException(Yii::t('error','Error data') . print_r($application->getErrors(), 1));
 
             $this->setHeader(200);
-            return array('request' => 'Application saved by id '.$application->id);
+            return array('request' => Yii::t('error','Application_saved').$application->id);
         }catch (BadRequestHttpException $ex){
             throw new BadRequestHttpException($ex->getMessage());
         }
     }
     public function actionSpecialization(){
         $params=Yii::$app->request->get();
+        if($params['lang'])
+            Yii::$app->language=$params['lang'];
         if(!isset($params['token']))
-            throw new BadRequestHttpException('get params token must be blank');
+            throw new BadRequestHttpException(Yii::t('error','Token'));
         $user=$this->serviceLogin->auth($params['token']);
         if(!Yii::$app->user->login($user))
-            throw new \Exception('User not login');
+            throw new \Exception(Yii::t('error','User'));
         unset($params['token']);
+        unset($params['lang']);
         $params['user_aplication']=$user->id;
         $application=Aplication::find()->where($params)->all();
         $this->setHeader(200);

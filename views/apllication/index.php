@@ -25,6 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             [
               'attribute'=> 'user_id',
+                'label'=>Yii::t('app','User_Id'),
               'value'=> function($model){
                 return $model->user->username;
               }
@@ -37,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute'=>'specialization_id',
-                'label'=>'specialization',
+                'label'=>Yii::t('app','Specialization'),
                 'value'=>function($model){
                     return $model->specialization->title;
                 },
@@ -46,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute'=>'science_degree_id',
-                'label'=>'Science Degree',
+                'label'=>Yii::t('app','Science_degree'),
                 'value'=>function($model){
                     return $model->scienceDegree->name;
                 },
