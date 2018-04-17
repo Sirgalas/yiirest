@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\entities\ScienceDegree */
 
-$this->title = 'Update Science Degree: {nameAttribute}';
-$this->params['breadcrumbs'][] = ['label' => 'Science Degrees', 'url' => ['index']];
+$this->title = Yii::t('app','Update').' '.$model->name;
+$this->params['breadcrumbs'][] = ['label' =>  Yii::t('app','Science_degrees'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = Yii::t('app','Update');
 ?>
 <div class="science-degree-update">
 

@@ -25,10 +25,7 @@ class OutherController extends Controller
         parent::__construct($id, $module, $config);
         $this->service = $service;
     }
-
-    public function actionHello(){
-       return "Hell0";
-    }
+    
 
     public function actionConfirm($token)
     {

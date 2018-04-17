@@ -81,14 +81,14 @@ class Aplication extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'content' => 'Content',
-            'create_at' => 'Create At',
-            'user_aplication' => 'User Aplication',
-            'user_request' => 'User Request',
-            'payment'=>'Payment',
-            'specialization_id'=>'Specialization',
-            'science_degree_id'=>'Science degree'
+            'title' => Yii::t('app','Title'),
+            'content' => Yii::t('app','Content'),
+            'create_at' => Yii::t('app','Create_At'),
+            'user_aplication' => Yii::t('app','User_Aplication'),
+            'user_request' => Yii::t('app','User_Request'),
+            'payment'=>Yii::t('app','Payment'),
+            'specialization_id'=>Yii::t('app','Specialization'),
+            'science_degree_id'=>Yii::t('app','Science degree')
         ];
     }
 

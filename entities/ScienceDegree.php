@@ -39,8 +39,8 @@ class ScienceDegree extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'comment' => 'Comment',
+            'name' => Yii::t('app','Title'),
+            'comment' => Yii::t('app','Comment'),
         ];
     }
 }

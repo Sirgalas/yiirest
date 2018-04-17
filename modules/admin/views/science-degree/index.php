@@ -7,16 +7,14 @@ use yii\grid\GridView;
 /* @var $searchModel app\search\ScienceDegreeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Science Degrees';
+$this->title = Yii::t('app','Science_degree');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="science-degree-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
-        <?= Html::a('Create Science Degree', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app','Create'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

@@ -30,11 +30,11 @@
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
-                 ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
-                 ['label' => 'Directory','url' => '/admin/doctors'],
-                 ['label' => 'Apllication', 'url' => '/admin/apllication'],
-                 ['label' => 'Science Degree', 'url' => '/admin/science-degree'],
-                 ['label' => 'Specialization', 'url' => '/admin/specialization']
+                 ['label' => Yii::t('app','Login'), 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+                 ['label' => Yii::t('app','Directory'),'url' => '/admin/doctors'],
+                 ['label' => Yii::t('app','Apllication'), 'url' => '/admin/apllication'],
+                 ['label' => Yii::t('app','Science_degree'), 'url' => '/admin/science-degree'],
+                 ['label' => Yii::t('app','Specialization'), 'url' => '/admin/specialization']
                 ],
             ]
         ) ?>

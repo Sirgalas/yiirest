@@ -7,8 +7,8 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\entities\Aplication */
 
-$this->title = 'Create Aplication';
-$this->params['breadcrumbs'][] = ['label' => 'Aplications', 'url' => ['index']];
+$this->title = Yii::app('app','Update').' '.$model->title;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app','Aplications'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="aplication-create">
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'doctorsSpecialization')->dropDownList($doctorsSpecialization); ?>
 
         <div class="form-group">
-            <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton(Yii::t('app','Save'), ['class' => 'btn btn-success']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>

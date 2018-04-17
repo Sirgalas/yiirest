@@ -3,15 +3,16 @@
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
+use lajax\languagepicker\Component;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\search\AplicationSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Comment Aplications';
+$this->title = Yii::t('app','Aplications');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="comment-aplication-index">
-
     <h1><?= Html::encode($this->title) ?></h1>
     <?php Pjax::begin(); ?>
     <?= GridView::widget([

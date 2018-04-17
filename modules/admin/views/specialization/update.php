@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\entities\Specialization */
 
-$this->title = 'Update Specialization: {nameAttribute}';
-$this->params['breadcrumbs'][] = ['label' => 'Specializations', 'url' => ['index']];
+$this->title = Yii::t('app','Update').' '.$model->title;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app','Specializations'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = Yii::t('app','Update');
 ?>
 <div class="specialization-update">
 

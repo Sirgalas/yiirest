@@ -8,7 +8,7 @@ use app\widgets\Comment;
 /* @var $model app\entities\Aplication */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Aplications', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app','Aplications'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="aplication-view">

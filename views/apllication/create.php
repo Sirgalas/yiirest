@@ -7,7 +7,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\entities\Aplication */
 
-$this->title = 'Create Aplication';
+$this->title = Yii::t('app','Create').' '.Yii::t('app','Aplications');
 
 ?>
 <div class="aplication-create">
@@ -27,7 +27,7 @@ $this->title = 'Create Aplication';
         <?= $form->field($model, 'science_degree_id')->dropDownList($science); ?>
 
         <div class="form-group">
-            <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton(Yii::t('app','Save'), ['class' => 'btn btn-success']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>

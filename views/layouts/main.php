@@ -60,8 +60,11 @@ AppAsset::register($this);
     ]);
     NavBar::end();
     ?>
-
-    <div class="container">
+       <div class="container">
+        <?= \lajax\languagepicker\widgets\LanguagePicker::widget([
+            'skin' => \lajax\languagepicker\widgets\LanguagePicker::SKIN_BUTTON,
+            'size' => \lajax\languagepicker\widgets\LanguagePicker::SIZE_SMALL
+        ]); ?>
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
@@ -69,7 +72,6 @@ AppAsset::register($this);
         <?= $content ?>
     </div>
 </div>
-
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; My Company <?= date('Y') ?></p>

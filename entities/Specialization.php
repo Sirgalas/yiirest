@@ -39,8 +39,8 @@ class Specialization extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'coment' => 'Coment',
+            'title' => Yii::t('app','Title'),
+            'coment' => Yii::t('app','Coment'),
         ];
     }
 }

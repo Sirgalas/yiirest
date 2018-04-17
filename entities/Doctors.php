@@ -43,9 +43,9 @@ class Doctors extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'specialization_id' => 'Specialization',
-            'science_degree_id'=>  'Science degree'
+            'name' => Yii::t('app','Name'),
+            'specialization_id' => Yii::t('app','Specialization'),
+            'science_degree_id'=>  Yii::t('app','Science_degree')
         ];
     }
 
